@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>深圳市地面坍塌预警系统</title>
+	<link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css" />
+    <script src="http://webapi.amap.com/maps?v=1.4.6&key=您申请的key值"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="plugins/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+</head>
+<body>
+<!--头部内容-->
+<div class="GIS-header">
+    <div class="header-left-logo float-l"><img src="img/logo.png" class="index-logo" />深圳市地面塌陷防治信息管理系统</div>
+    <div class="header-middle-btn float-l">
+        <div class="middle-content">
+            <input class="trapeze" role="longitute" value="125.252">
+            <input class="trapeze" role="latitude" value="5989.33">
+            <ul class="top-tool-icon">
+                <li class="" title="定位">
+                    <span class="location-icon tool-icon"></span>
+                </li>
+                <li class="-l" title="主页">
+                    <span class="home-icon tool-icon"></span>
+                </li>
+                <li class="" title="默认地图">
+                    <span class="map-icon tool-icon active"></span>
+                </li>
+                <li class="" title="影像地图">
+                    <span class="satellite-map-icon tool-icon"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="header-right-query float-r">
+        <input type="text" class="query-input float-l" id="adressVal" value="" placeholder="灾害点地址">
+        <input type="button" class="query-btn float-l" value="" id="addressQuerybtn">
+    </div>
+</div>
+
+<!--显示地图-->
+<div id="map_div" class="main_map"></div>
+<div id="poltcanvas" class="hide"></div>
+
+<!--检索弹出框-->
+<div id="search-popout" class="search-popout">
+
+</div>
+<!--地图上弹框-->
+<div id="map-popout" class="map-popout"></div>
+
+</body>
+
+<!--jquery-->
+<script type="text/javascript" src="plugins/jquery-1.9.1.min.js"></script>
+
+<script type="text/javascript" src="js/index.js"></script>
+
+<!--配置-->
+<script src="js/common/config.js"></script>
+<!--配置-->
+<script src="js/common/jsUtil.js"></script>
+<!--地图相关 start-->
+<script src="modules/map/Cesium/Cesium.js" type="text/javascript"></script>
+<script src="modules/map/cesiuminit.js" type="text/javascript"></script>
+<script src="modules/map/mouseEvent.js" type="text/javascript"></script>
+<script src="modules/map/gisUtil.js" type="text/javascript"></script>
+<script src="modules/map/drawler/DrawHelper.js" type="text/javascript"></script>
+<script src="modules/map/GISRelated.js" type="text/javascript"></script>
+<script src="plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+</html>

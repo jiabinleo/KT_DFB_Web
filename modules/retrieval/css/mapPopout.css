@@ -1,0 +1,69 @@
+#popout-mapInfo{
+    top: -333px;
+    left: -188px;
+}
+.mapinfo-tabs{
+    line-height: 40px;
+    height: 40px;
+    margin-top: -10px;
+}
+.tabsicon{
+    width: 5px;
+    height: 9px;
+    margin: 14px 5px;
+}
+.tabsiconl{
+    background: url(../../../img/tabsiconl.png) no-repeat center;
+}
+.tabsiconr{
+    background: url(../../../img/tabsiconr.png) no-repeat center;
+}
+.tabs-content{
+    width: calc(100% - 32px);
+    height: 40px;
+    overflow: hidden;
+    /*overflow-x: auto;*/
+    white-space:nowrap;
+    border-bottom: 1px solid #d9d9d9;
+}
+.tabs-content-list{
+   padding: 0 8px;
+    display: inline-block;
+}
+.tabs-content-list.active{
+    color: #fff;
+    background-color: #0eb7d6;
+    height: 24px;
+    border-radius: 12px;
+    line-height: 24px;
+    margin-top: 7px;
+}
+/*具体信息的内容*/
+.detail-mapinfo{
+    padding: 8px 20px;
+}
+.detail-mapinfo-list{
+    line-height: 26px;
+    font-size: 13px;
+}
+.detail-mapinfo-list>.title{
+    color: #999;
+}
+.detail-mapinfo-list>.infoes-content{
+    line-height: 20px;
+    padding-bottom: 20px;
+}
+
+.box-width-equal{
+    position: absolute;
+    bottom: 0;
+    left: 179px;
+}
+.box-width-equal::before{
+    content: '';
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-top: 10px solid #fff;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid transparent;
+}

@@ -1,0 +1,427 @@
+<!--地图上点位点击弹出框-->
+<div class="popout-content " id="popout-mapInfo" style="width:453px;">
+  <div class="modals-header">
+    <div class="modals-header-tit">545621</div>
+    <a class="closeX"></a>
+  </div>
+  <!-- <div class="modals-body">
+        <div class="mapinfo-tabs">
+            <i class="float-l tabsicon tabsiconl"></i>
+            <div class="tabs-content float-l">
+                <ul>
+                    <li class="tabs-content-list active">具体信息</li>
+                    <li class="tabs-content-list">照片</li>
+                    <li class="tabs-content-list">视频</li>
+                    <li class="tabs-content-list">台账</li>
+                    <li class="tabs-content-list">其他信息</li>
+                    <li class="tabs-content-list">其他信息</li>
+                </ul>
+
+            </div>
+            <i class="float-r tabsicon tabsiconr"></i>
+        </div>
+        <div class="mapinfo-main">
+            <ul id="detail-mapinfo" class="detail-mapinfo">
+                <li class="detail-mapinfo-list">
+                    <span class="title">设备ID：</span>
+                    <span class="device-ID">2545454</span>
+                </li>
+                <li class="detail-mapinfo-list">
+                    <span class="title">设备地址：</span>
+                    <span class="device-address">风速风多少个个</span>
+                </li>
+                <li class="detail-mapinfo-list">
+                    <span class="title">上报时间：</span>
+                    <span class="report-time">2014-04-11 12:55:55</span>
+                </li>
+                <li class="detail-mapinfo-list">
+                    <span class="title">在线状态：</span>
+                    <span class="online-status">在线</span>
+                </li>
+                <li class="detail-mapinfo-list">
+                    <span class="title">厂商服务器：</span>
+                    <span class="vendor-server">大多数的防晒霜的</span>
+                </li>
+                <li class="detail-mapinfo-list">
+                    <span class="title">信息内容：</span>
+                    <div  class="infoes-content">时候还好或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或灌灌灌灌灌过过过过过过过</div>
+                </li>
+            </ul>
+        </div>-->
+  <div class="modals-body">
+    <div class="mapinfo-tabs">
+      <i class="float-l tabsicon tabsiconl"></i>
+      <div class="tabs-content float-l">
+        <ul style="margin-left: 0px;">
+          <li class="tabs-content-list active">具体信息</li>
+          <li class="tabs-content-list">照片</li>
+          <li class="tabs-content-list">视频</li>
+          <li class="tabs-content-list">巡查轨迹</li>
+        </ul>
+
+      </div>
+      <i class="float-r tabsicon tabsiconr"></i>
+    </div>
+    <div class="mapinfo-main">
+      <ul id="menu1" class="detail-mapinfo">
+        <li class="detail-mapinfo-list">
+          <span class="title">巡查者姓名：</span>
+          <span class="device-un" id="deviceUN"></span>
+        </li>
+        <li class="detail-mapinfo-list">
+          <span class="title">巡查时间：</span>
+          <span class="device-time" id="deviceTime"></span>
+        </li>
+        <li class="detail-mapinfo-list">
+          <span class="title">经度：</span>
+          <span class="report-lon" id="reportLon"></span>
+        </li>
+        <li class="detail-mapinfo-list">
+          <span class="title">纬度：</span>
+          <span class="online-lat" id="onlineLat"></span>
+        </li>
+        <li class="detail-mapinfo-list">
+          <span class="title">巡查地址：</span>
+          <span class="vendor-address" id="vendorAddress"></span>
+        </li>
+        <li class="detail-mapinfo-list">
+          <span class="title">管理状态：</span>
+          <span class="infoes-status" id="infoesStatus"></span>
+        </li>
+      </ul>
+      <ul id="menu2" class="menu2 detail-mapinfo">
+
+      </ul>
+      <ul id="menu3" class="menu3 detail-mapinfo">
+
+      </ul>
+      <ul id="" class="detail-mapinfo">
+        <div id="container"></div>
+        <div class="button-group">
+          <input type="button" class="button" value="开始动画" id="start" />
+          <input type="button" class="button" value="暂停动画" id="pause" />
+          <input type="button" class="button" value="继续动画" id="resume" />
+          <input type="button" class="button" value="停止动画" id="stop" />
+
+        </div>
+      </ul>
+
+
+    </div>
+  </div>
+
+</div>
+<div class="box-width-equal"></div>
+</div>
+<script>
+  $(function () {
+    var uuid = sessionStorage.getItem("uuid");
+    $(".tabs-content").on("click", ".tabs-content-list", function () {
+      $(this).addClass("active").siblings().removeClass("active");
+      $(".mapinfo-main").find(".detail-mapinfo").eq($(this).index()).show().siblings().hide();
+
+    });
+    $.ajax({
+      // url:"http://192.168.1.240:8080/dfbinterface/mobile/gisshow/GetSingleDisaster",
+      url:"http://14.116.184.77:8098/dfbinterface/mobile/gisshow/GetSingleDisaster",
+      type: "POST",
+      dataType: 'jsonp',
+      jsonp: 'callback',
+      data: {
+        uuid: uuid
+      },
+      success: function (data) {
+        console.log("?????",data)
+        queryData(data);
+        if(data.result.inspectList.length!=0){
+          var result = data.result.inspectList[0].coordinate_set;
+          var position=[parseFloat(data.result.inspectList[0].lon),parseFloat(data.result.inspectList[0].lat)]
+          map.init(result,position);
+        }
+      },
+      error: function (err) { }
+    });
+
+    function queryData(data) {
+      //具体信息
+      var deviceUN = data.result.fzsite.manager?data.result.fzsite.manager:"";
+      var deviceTime = data.result.fzsite.createtime?data.result.fzsite.createtime:"";
+      var reportLon = data.result.fzsite.lon;
+      var onlineLat = data.result.fzsite.lat;
+      var vendorAddress = data.result.fzsite.addressname;
+      var infoesStatus = data.result.fzsite.nowstatus;
+      console.log("//////////")
+      console.log(deviceTime)
+      console.log("//////////")
+      
+      $("#deviceUN").html(deviceUN);
+      $("#deviceTime").html(common.formatDate(deviceTime));
+      $("#reportLon").html(reportLon);
+      $("#onlineLat").html(onlineLat);
+      $("#vendorAddress").html(vendorAddress);
+      $("#infoesStatus").html(common.status(infoesStatus));
+
+      //照片and视频
+      var imgs = [],
+        videos = [],
+        imgIndex = 0,
+        videoIndex = 0;
+      for (let i = 0; i < data.result.attachList.length; i++) {
+        if (data.result.attachList[i].filetype == "1") {
+          imgs.push(data.result.attachList[i].url_path);
+        } else if (data.result.attachList[i].filetype == "2") {
+          videos.push(data.result.attachList[i].url_path);
+        }
+      }
+      $("#menu2").html(
+        `<li class="detail-mapinfo-list">
+        <img style="width:100%;height:100%" src="${imgs[imgIndex]}" alt="">
+        <span id="imgLeft" class="arr arrLeft"><</span>
+        <span id="imgRight" class="arr arrRight">></span>
+      </li>`
+      );
+      //
+      $(document).on("click", "#imgLeft", function () {
+        if (imgIndex > 0) {
+          imgIndex--;
+          $("#menu2").html(
+            `<li class="detail-mapinfo-list">
+            <img style="width:100%" src="${imgs[imgIndex]}" alt="">
+            <span id="imgLeft" class="arr arrLeft"><</span>
+            <span id="imgRight" class="arr arrRight">></span>
+          </li>`
+          );
+        }
+      });
+      $(document).on("click", "#imgRight", function () {
+        if (imgIndex < imgs.length - 1) {
+          imgIndex++;
+          $("#menu2").html(
+            `<li class="detail-mapinfo-list">
+                <img style="width:100%" src="${imgs[imgIndex]}" alt="">
+                <span id="imgLeft" class="arr arrLeft"><</span>
+                <span id="imgRight" class="arr arrRight">></span>
+                </li>`
+          );
+        }
+      });
+
+      $("#menu3").html(
+        `<li class="detail-mapinfo-list">
+        <video id="vid" pause width="100%" src="${videos[videoIndex]}" class="pause"></video>
+        <span id="videoLeft" class="arr arrLeft"><</span>
+        <span id="videoRight" class="arr arrRight">></span>
+    </li>`
+      );
+
+      $(document).on("click", "#videoLeft", function () {
+        console.log(videos);
+        if (videoIndex > 0) {
+          videoIndex--;
+          console.log(videoIndex);
+          $("#menu3").html(
+            `<li class="detail-mapinfo-list">
+        <video id="vid" class="pause" width="100%" src="${
+            videos[videoIndex]
+            }" class="pause"></video>
+        <span id="videoLeft" class="arr arrLeft"><</span>
+        <span id="videoRight" class="arr arrRight">></span>
+    </li>`
+          );
+        }
+      });
+      $(document).on("click", "#videoRight", function () {
+        if (videoIndex < videos.length - 1) {
+          videoIndex++;
+          console.log(videoIndex);
+          $("#menu3").html(
+            `<li class="detail-mapinfo-list">
+        <video id="vid" class="pause" width="100%" src="${
+            videos[videoIndex]
+            }"></video>
+        <span id="videoLeft" class="arr arrLeft"><</span>
+        <span id="videoRight" class="arr arrRight">></span>
+    </li>`
+          );
+        }
+      });
+
+      $(".closeX").on("click", function () {
+        $("#map-popout").hide()
+      })
+      console.log("00")
+      $("#vid").on("click",function () {
+        if ($(this).hasClass("pause")) {
+          $(this).trigger("play");
+          $(this).removeClass("pause");
+          $(this).addClass("play");
+        } else {
+          $(this).trigger("pause");
+          $(this).removeClass("play");
+          $(this).addClass("pause");
+        }
+      });
+    }
+
+    //时间转换
+    var common = {
+      formatDate: function (now) {
+        console.log(now);
+        var now = new Date(now);
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1;
+        var date = now.getDate();
+        var hour = now.getHours();
+        var minute = now.getMinutes();
+        var second = now.getSeconds();
+        return (
+          year +
+          "-" +
+          common.fixZero(month, 2) +
+          "-" +
+          common.fixZero(date, 2) +
+          " " +
+          common.fixZero(hour, 2) +
+          ":" +
+          common.fixZero(minute, 2) +
+          ":" +
+          common.fixZero(second, 2)
+        );
+      },
+      //状态判断
+      status: function (dd) {
+        var sta = "";
+        switch (dd) {
+          case "0":
+            sta = "离线";
+            break;
+          case "1":
+            sta = "在线";
+            break;
+          case "2":
+            sta = "故障";
+            break;
+          default:
+            break;
+        }
+        return sta;
+      },
+      //时间如果为单位数补0
+      fixZero: function (num, length) {
+        var str = "" + num;
+        var len = str.length;
+        var s = "";
+        for (var i = length; i-- > len;) {
+          s += "0";
+        }
+        return s + str;
+      }
+    };
+    // 绘制轨迹
+    var map = {
+      init: function (result, position) {
+        var marker,
+          lineArr = [];
+        var map = new AMap.Map("container", {
+          resizeEnable: true,
+          center: position,
+          zoom: 17
+        });
+        marker = new AMap.Marker({
+          map: map,
+          position: position,
+          icon: "http://webapi.amap.com/images/car.png",
+          offset: new AMap.Pixel(-26, -13),
+          autoRotation: true
+        });
+        result = JSON.parse(result.replace(/'/g, '"'));
+
+        console.log(result);
+
+        for (var i = 0; i < result.length; i++) {
+          var lon = parseFloat(result[i].lon);
+          var lat = parseFloat(result[i].lat);
+          var obj = [lon, lat];
+          lineArr.push(obj);
+        }
+        console.log(lineArr)
+
+        var polyline = new AMap.Polyline({
+          map: map,
+          path: lineArr,
+          strokeColor: "#00A", //线颜色
+          // strokeOpacity: 1,     //线透明度
+          strokeWeight: 3 //线宽
+          // strokeStyle: "solid"  //线样式
+        });
+        var passedPolyline = new AMap.Polyline({
+          map: map,
+          // path: lineArr,
+          strokeColor: "#F00", //线颜色
+          // strokeOpacity: 1,     //线透明度
+          strokeWeight: 3 //线宽
+          // strokeStyle: "solid"  //线样式
+        });
+        //添加点标记，并使用自己的icon
+        var marker1 = new AMap.Marker({
+          map: map,
+          position: [116.397828, 39.91123],
+          icon: "https://webapi.amap.com/theme/v1.3/markers/n/mark_bs.png",
+          offset: new AMap.Pixel(-26, -13),
+          autoRotation: true
+        });
+        map.add(marker1);
+
+        marker.on("moving", function (e) {
+          passedPolyline.setPath(e.passedPath);
+        });
+        map.setFitView();
+
+        AMap.event.addDomListener(
+          document.getElementById("start"),
+          "click",
+          function () {
+            marker.moveAlong(lineArr, 500);
+          },
+          false
+        );
+        AMap.event.addDomListener(
+          document.getElementById("pause"),
+          "click",
+          function () {
+            marker.pauseMove();
+          },
+          false
+        );
+        AMap.event.addDomListener(
+          document.getElementById("resume"),
+          "click",
+          function () {
+            marker.resumeMove();
+          },
+          false
+        );
+        AMap.event.addDomListener(
+          document.getElementById("stop"),
+          "click",
+          function () {
+            marker.stopMove();
+          },
+          false
+        );
+      },
+      //巡查轨迹
+      GetQueryString: function (name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+        var context = "";
+        if (r != null) context = r[2];
+        reg = null;
+        r = null;
+        return context == null || context == "" || context == "undefined"
+          ? ""
+          : context;
+      }
+    };
+  })
+</script>

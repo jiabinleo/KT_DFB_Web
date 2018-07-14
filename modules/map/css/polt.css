@@ -1,0 +1,599 @@
+#poltdiv .header{
+    width: 100%;
+    height: 30px;
+    line-height: 28px;
+    background: #18335e url(../../../images/polt/polt.png) no-repeat 5px center;
+    color: #fff;
+}
+#poltdiv .header-name{
+    text-indent: 30px;
+    width: 80%;
+    float: left;
+}
+#poltdiv .polt-close{
+    cursor: pointer;
+    width: 20%;
+    text-align: center;
+    float: left;
+}
+
+#poltdiv .polt_body>div{
+    width: 100%;
+    float: left;
+    /*margin-top: 10px;*/
+    /*margin-left: 15px;*/
+}
+#poltdiv .polt_body .polttype{
+    color: #fff;
+    background: #32578e;
+}
+
+#poltdiv .polt_body .polttype span{
+    float: left;
+    list-style: none;
+    position: relative;
+    /*font-size: 15px;*/
+    /*margin-right: 20px;*/
+    /*height: 24px;*/
+    /*width: 24px;*/
+
+}
+.divtooltype {
+    background-color: #1d4173;
+    float: left;
+}
+.spantooltype{
+    height: 34px;
+    width: 34px;
+}
+.divspantool{
+    float: left;
+    background-color: #32578e;
+
+}
+.lastdivtooltype{
+  padding-bottom: 10px;
+}
+.polttype span:hover{
+    cursor: pointer;
+}
+
+
+.polttype input, .poltarg input
+{
+    float: left;
+}
+
+#poltdiv .polt_body .poltarg>div>span{
+    float: left;
+    position: relative;
+    margin-left: 8px;
+}
+
+.spantool{
+    height: 24px;
+    width: 24px;
+    background-repeat:no-repeat;
+    background-position: center;
+    margin-left: 10px;
+    margin-right: 5px;
+    margin-top: 8px;
+}
+#graphselect{
+    background: url(../../../images/polt/arrows.png)  no-repeat  center;
+    height: 24px;
+    width: 24px;
+    float: right;
+    margin-right: 70px;
+    margin-top: 4px;
+}
+.cgraphselect{
+    background: url(../../../images/polt/arrowsactive.png)  no-repeat  center !important;
+}
+#poltcolor{
+    width: 90px;
+}
+#pointtype {
+    background: url(../../../images/polt/pointtype.png)  no-repeat  center;
+}
+#pointpin{
+    background-image: url(../../../images/polt/pointpin.png);
+}
+.cpointpin{
+    background-image: url(../../../images/polt/pointpinactive.png) !important;
+}
+#pointbubble{
+    background-image: url(../../../images/polt/pointbubble.png);
+}
+.cpointbubble{
+    background-image: url(../../../images/polt/pointbubbleactive.png) !important;
+}
+
+#linetype {
+    background: url(../../../images/polt/linetype.png)  no-repeat  center;;
+}
+#brokenline{
+    background-image: url(../../../images/polt/poltbrokenline.png);
+}
+.cbrokenline{
+    background-image: url(../../../images/polt/poltbrokenlineactive.png)!important;
+}
+#brokendashline{
+    background-image: url(../../../images/polt/poltbrokendashline.png);
+}
+.cbrokendashline{
+    background-image: url(../../../images/polt/poltbrokendashlineactive.png)!important;
+}
+#curveline{
+    background-image:  url(../../../images/polt/poltcurveline.png);
+}
+.ccurveline{
+    background-image:  url(../../../images/polt/poltcurvelineactive.png) !important;
+}
+
+#curvedashline{
+    background-image:  url(../../../images/polt/poltcurvedashline.png);
+}
+.ccurvedashline{
+    background:  url(../../../images/polt/poltcurvedashlineactive.png) !important;
+}
+
+#doublebrokenline{
+    background-image:  url(../../../images/polt/poltdoublebrokenline.png);
+}
+.cdoublebrokenline{
+    background-image:  url(../../../images/polt/poltdoublebrokenlineactive.png) !important;
+}
+#doublecurveline{
+    background-image:  url(../../../images/polt/poltdoublecurveline.png);
+}
+.cdoublecurveline{
+    background-image:  url(../../../images/polt/poltdoublecurvelineactive.png) !important;
+}
+
+#polygontype {
+    background: url(../../../images/polt/polygontype.png)  no-repeat  center;;
+}
+#circle{
+    background-image:  url(../../../images/polt/poltcircle.png);
+}
+.ccircle{
+    background-image:  url(../../../images/polt/poltcircleactive.png) !important;
+}
+
+#generalpolygon{
+    background-image:  url(../../../images/polt/poltpolygon.png);
+}
+.cgeneralpolygon{
+    background-image:  url(../../../images/polt/poltpolygonactive.png) !important;
+}
+
+#curvepolygon{
+    background-image:  url(../../../images/polt/poltcurvepolygon.png);
+}
+.ccurvepolygon{
+    background-image:  url(../../../images/polt/poltcurvepolygonactive.png) !important;
+}
+#polttexttyype{
+    background: url(../../../images/polt/polttext.png)  no-repeat  center;;
+}
+#textlable{
+    background-image:  url(../../../images/polt/polttextlable.png);
+}
+.ctextlable{
+    background-image:  url(../../../images/polt/polttextlableactive.png) !important;
+}
+.poltarg{
+    margin-top: 8px;
+}
+.poltarg div{
+    float: left;
+}
+.poltarg>div:first-child {
+    width: 20%;
+    min-width: 60px;
+}
+.poltarg>div:last-child {
+    width: 80%;
+    min-width: 220px;
+}
+#polttext {
+    margin-left: 10px;
+    margin-right: 5px;
+    width: 210px;
+    margin-top: 8px;
+    color: black;
+}
+#points-font{
+    width: calc(100% - 50px);
+}
+#poltheight{
+    width: 50px;
+}
+#poltwidth{
+    width: 50px;
+}
+#poltopacity{
+    width: 50px;
+}
+#poltwidthspan
+{
+    margin-top: 2px;
+}
+.spaninterval{
+    margin-left: calc(100% - 212px) !important;
+    margin-right: 10px;
+}
+.poltarg input{
+    height: 28px !important;
+    text-align:center
+}
+#points-font{
+ text-align: center;
+ }
+
+
+#measuretype{
+    background: url(../../../images/polt/measuretype.png)  no-repeat  center;
+}
+
+
+  #lengthmeasure{
+      background: url(../../../images/polt/lengthmeasure.png);
+  }
+  .clengthmeasure{
+      background: url(../../../images/polt/lengthmeasureactive.png) !important;
+  }
+
+  #areameasure{
+      background: url(../../../images/polt/areameasure.png);
+  }
+  .careameasure{
+      background: url(../../../images/polt/areameasureactive.png) !important;
+  }
+
+ #showmeasure{
+     background: url(../../../images/polt/showmeasure.png);
+     height: 24px;
+     width: 24px;
+     background-repeat:no-repeat;
+     background-position: center;
+     margin-left: 10px;
+     margin-right: 5px;
+     margin-top: 8px;
+   }
+
+.cshowmeasure{
+    background: url(../../../images/polt/showmeasureactive.png) !important;
+}
+#clearmeasure{
+    background: url(../../../images/polt/clearmeasure.png);
+}
+
+.p-helper-control-point-div{
+    width: 8px;
+    height: 8px;
+    border: 1px solid #000;
+    background-color: #ff0;
+    opacity: 0.8;
+    cursor: move;
+}
+
+#overlaytextiput{
+    height: 24px;
+    border:1px rgb(160,160,160) dashed;
+    background-color: rgba(160,160,160,0.3);
+}
+
+.poltbtn{
+
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 60px;
+    height: 28px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    border-color: #1990ea;
+}
+.poltcancel{
+    color: #1990ea;
+    background-color: white;
+    margin-right: 10px;
+    margin-left: 10px;
+
+}
+.poltconfirm{
+    color:white ;
+    background-color: #1990ea ;
+    margin-left: 10px;
+    margin-right: calc((100% - 220px)/2);
+}
+.poltdelet{
+    color:white ;
+    background-color:red ;
+    margin-left: calc((100% - 220px)/2);
+    border-color: red !important;
+}
+
+.tooltipOverlay {
+    position: relative;
+    background:  #1991eb;
+    border-radius: 4px;
+    color: white;
+    padding: 4px 8px;
+    opacity: 0.7;
+    white-space: nowrap;
+}
+.tooltipmeasureOverlay {
+    opacity: 0.7;
+}
+
+.tooltip-static {
+    background-color:  #1991eb;
+    color: white;
+    /*border: 1px solid white;*/
+    opacity: 0.9  !important;
+}
+.tooltipmeasureOverlay:before,
+.tooltip-static:before {
+    border-top: 6px solid  #1991eb;
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    margin-left: -7px;
+    left: 50%;
+}
+.tooltip-static:before {
+    border-top-color:  #1991eb;;
+}
+
+
+
+
+.minicolors {
+    position: relative;
+}
+
+.minicolors-swatch {
+    position: absolute;
+    vertical-align: middle;
+    background:  url(../../../images/map_icon/jquery.minicolors.png) -80px 0;
+    border: solid 1px #ccc;
+    cursor: text;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+.minicolors-swatch-color {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.minicolors input[type=hidden] + .minicolors-swatch {
+    width: 28px;
+    position: static;
+    cursor: pointer;
+}
+
+/* Panel */
+.minicolors-panel {
+    position: absolute;
+    width: 173px;
+    height: 152px;
+    background: white;
+    border: solid 1px #CCC;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+    z-index: 99999;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    display: none;
+}
+
+.minicolors-panel.minicolors-visible {
+    display: block;
+}
+
+/* Panel positioning */
+.minicolors-position-top .minicolors-panel {
+    top: -154px;
+}
+
+.minicolors-position-right .minicolors-panel {
+    right: 0;
+}
+
+.minicolors-position-bottom .minicolors-panel {
+    top: 25px;
+}
+
+.minicolors-position-left .minicolors-panel {
+    left: 0;
+}
+
+.minicolors-with-opacity .minicolors-panel {
+    width: 194px;
+}
+
+.minicolors .minicolors-grid {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 150px;
+    height: 150px;
+    background: url(../../../images/map_icon/jquery.minicolors.png) -120px 0;
+    cursor: crosshair;
+}
+
+.minicolors .minicolors-grid-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 150px;
+    background: none;
+}
+
+.minicolors-slider-saturation .minicolors-grid {
+    background-position: -420px 0;
+}
+
+.minicolors-slider-saturation .minicolors-grid-inner {
+    background: url(../../../images/map_icon/jquery.minicolors.png) -270px 0;
+}
+
+.minicolors-slider-brightness .minicolors-grid {
+    background-position: -570px 0;
+}
+
+.minicolors-slider-brightness .minicolors-grid-inner {
+    background: black;
+}
+
+.minicolors-slider-wheel .minicolors-grid {
+    background-position: -720px 0;
+}
+
+.minicolors-slider,
+.minicolors-opacity-slider {
+    position: absolute;
+    top: 1px;
+    left: 152px;
+    width: 20px;
+    height: 150px;
+    background: white url(../../../images/map_icon/jquery.minicolors.png) 0 0;
+    cursor: row-resize;
+}
+
+.minicolors-slider-saturation .minicolors-slider {
+    background-position: -60px 0;
+}
+
+.minicolors-slider-brightness .minicolors-slider {
+    background-position: -20px 0;
+}
+
+.minicolors-slider-wheel .minicolors-slider {
+    background-position: -20px 0;
+}
+
+.minicolors-opacity-slider {
+    left: 173px;
+    background-position: -40px 0;
+    display: none;
+}
+
+.minicolors-with-opacity .minicolors-opacity-slider {
+    display: block;
+}
+
+/* Pickers */
+.minicolors-grid .minicolors-picker {
+    position: absolute;
+    top: 70px;
+    left: 70px;
+    width: 12px;
+    height: 12px;
+    border: solid 1px black;
+    border-radius: 10px;
+    margin-top: -6px;
+    margin-left: -6px;
+    background: none;
+}
+
+.minicolors-grid .minicolors-picker > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    border: solid 2px white;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+.minicolors-picker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 18px;
+    height: 2px;
+    background: white;
+    border: solid 1px black;
+    margin-top: -2px;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+/* Inline controls */
+.minicolors-inline {
+    display: inline-block;
+}
+
+.minicolors-inline .minicolors-input {
+    display: none !important;
+}
+
+.minicolors-inline .minicolors-panel {
+    position: relative;
+    top: auto;
+    left: auto;
+    box-shadow: none;
+    z-index: auto;
+    display: inline-block;
+}
+
+/* Default theme */
+.minicolors-theme-default .minicolors-swatch {
+    top: 5px;
+    left: 5px;
+    width: 18px;
+    height: 18px;
+}
+.minicolors-theme-default.minicolors-position-right .minicolors-swatch {
+    left: auto;
+    right: 5px;
+}
+.minicolors-theme-default.minicolors {
+    width: auto;
+    display: inline-block;
+}
+.minicolors-theme-default .minicolors-input {
+    height: 20px;
+    width: auto;
+    display: inline-block;
+    padding-left: 26px;
+}
+.minicolors-theme-default.minicolors-position-right .minicolors-input {
+    padding-right: 26px;
+    padding-left: inherit;
+}
+
+/* Bootstrap theme */
+.minicolors-theme-bootstrap .minicolors-swatch {
+    top: 3px;
+    left: 3px;
+    width: 28px;
+    height: 28px;
+    border-radius: 3px;
+}
+.minicolors-theme-bootstrap.minicolors-position-right .minicolors-swatch {
+    left: auto;
+    right: 3px;
+}
+.minicolors-theme-bootstrap .minicolors-input {
+    padding-left: 44px;
+}
+.minicolors-theme-bootstrap.minicolors-position-right .minicolors-input {
+    padding-right: 44px;
+    padding-left: 12px;
+}
