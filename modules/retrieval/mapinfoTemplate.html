@@ -85,7 +85,7 @@
           <span class="vendor-address" id="vendorAddress"></span>
         </li>
         <li class="detail-mapinfo-list">
-          <span class="title">管理状态：</span>
+          <span class="title">状态：</span>
           <span class="infoes-status" id="infoesStatus"></span>
         </li>
       </ul>
@@ -159,6 +159,7 @@
       $("#reportLon").html(reportLon);
       $("#onlineLat").html(onlineLat);
       $("#vendorAddress").html(vendorAddress);
+      console.log(infoesStatus)
       $("#infoesStatus").html(common.status(infoesStatus));
 
       //照片and视频
@@ -175,7 +176,7 @@
       }
       $("#menu2").html(
         `<li class="detail-mapinfo-list">
-        <img style="width:100%;height:100%" src="${imgs[imgIndex]}" alt="">
+        <img style="width:100%;height:100%" src="${imgs[imgIndex]}" alt="暂无图片">
         <span id="imgLeft" class="arr arrLeft"><</span>
         <span id="imgRight" class="arr arrRight">></span>
       </li>`
@@ -186,7 +187,7 @@
           imgIndex--;
           $("#menu2").html(
             `<li class="detail-mapinfo-list">
-            <img style="width:100%" src="${imgs[imgIndex]}" alt="">
+            <img style="width:100%" src="${imgs[imgIndex]}" alt="暂无图片">
             <span id="imgLeft" class="arr arrLeft"><</span>
             <span id="imgRight" class="arr arrRight">></span>
           </li>`
@@ -198,7 +199,7 @@
           imgIndex++;
           $("#menu2").html(
             `<li class="detail-mapinfo-list">
-                <img style="width:100%" src="${imgs[imgIndex]}" alt="">
+                <img style="width:100%" src="${imgs[imgIndex]}" alt="暂无图片">
                 <span id="imgLeft" class="arr arrLeft"><</span>
                 <span id="imgRight" class="arr arrRight">></span>
                 </li>`
@@ -208,7 +209,7 @@
 
       $("#menu3").html(
         `<li class="detail-mapinfo-list">
-        <video id="vid" pause width="100%" src="${videos[videoIndex]}" class="pause"></video>
+        <video id="vid" pause width="100%" src="${videos[videoIndex]}" class="pause">暂无视频</video>
         <span id="videoLeft" class="arr arrLeft"><</span>
         <span id="videoRight" class="arr arrRight">></span>
     </li>`
@@ -223,7 +224,7 @@
             `<li class="detail-mapinfo-list">
         <video id="vid" class="pause" width="100%" src="${
             videos[videoIndex]
-            }" class="pause"></video>
+            }" class="pause">暂无视频</video>
         <span id="videoLeft" class="arr arrLeft"><</span>
         <span id="videoRight" class="arr arrRight">></span>
     </li>`
@@ -238,7 +239,7 @@
             `<li class="detail-mapinfo-list">
         <video id="vid" class="pause" width="100%" src="${
             videos[videoIndex]
-            }"></video>
+            }">暂无视频</video>
         <span id="videoLeft" class="arr arrLeft"><</span>
         <span id="videoRight" class="arr arrRight">></span>
     </li>`
@@ -293,13 +294,13 @@
         var sta = "";
         switch (dd) {
           case "0":
-            sta = "离线";
+            sta = "已治理";
             break;
           case "1":
-            sta = "在线";
+            sta = "未治理";
             break;
           case "2":
-            sta = "故障";
+            sta = "治理中";
             break;
           default:
             break;

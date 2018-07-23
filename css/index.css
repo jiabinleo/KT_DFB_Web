@@ -193,9 +193,11 @@ ul,ol{
   }
   .popout-div .modals-body .mapinfo-main ul li .arr.arrLeft {
     left: 0;
+    top: 45%;
   }
   .popout-div .modals-body .mapinfo-main ul li .arr.arrRight {
     right: 0;
+    top: 45%;
   }
   .popout-div .modals-body .mapinfo-main ul .amap-logo {
     opacity: 0;

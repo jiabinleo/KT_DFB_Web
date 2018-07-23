@@ -7,6 +7,7 @@ var retrieval = {
             // retrieval.getRetrievalData();
             $("#popout-retrieval").show();
             retrieval.GetGisAreaData();
+            retrieval.getGovernance()
         });
         $("#popout-retrieval .closeX").click(function () {
             $("#popout-retrieval").hide();
@@ -21,15 +22,18 @@ var retrieval = {
         $("#querydatabtn").click(function () {
             $("#street_select").find("option:selected").val();
             var dtype = $(".type-choose-box .type-choose.active").attr("data");
-            var areaname = $("#street_select").find("option:selected").text();
-            var streetname = $("#street_select").find("option:selected").text();
+            // var areaname = $("#disaster_select").find("option:selected").text();
+            // var streetname = $("#street_select").find("option:selected").text();
+             var areaname = $("#disaster_select").find("option:selected").val();
+            var streetname = $("#street_select").find("option:selected").val();
             ;
             var data = {
                 dtype: dtype,
-                areaname: areaname == "全部" ? "" : areaname,
-                streetname: streetname == "全部" ? "" : streetname,
+                areaid: areaname == "全部" ? "" : areaname,
+                streetid: streetname == "全部" ? "" : streetname,
             }
             retrieval.GetGisDisasterdata(data);
+            retrieval.getGovernance(data)
         });
         $("#addressQuerybtn").click(function () {
             $("#popout-retrieval").show();
@@ -74,10 +78,8 @@ var retrieval = {
             selectconten += "<option value='" + data[i].id + "'>" + data[i].name + "</option>";
         }
         $("#street_select").html(selectconten);
-
-
     },
-    // 显示table数据列表
+    // 显示table数据列
     showQueryDatalist: function (data) {
         var len = data.result.length,
             datas = data.result;
@@ -89,7 +91,7 @@ var retrieval = {
             tableData += '<div class="query-data-list data-list-tbody row" itemuuid="' + datas[i].uuid + '" >' +
                 '                    <div class="col-xs-3"><span>' + datas[i].id + '</span></div>' +
                 '                    <div class="col-xs-7"><span>' + datas[i].areaname + datas[i].addressname + '</span></div>' +
-                '                    <div class="col-xs-2"><span>在线</span></div>' +
+                '                    <div class="col-xs-2"><span>'+retrieval.ifInline(datas[i].managestate)+'</span></div>' +
                 '                </div>';
 
         }
@@ -97,9 +99,44 @@ var retrieval = {
         retrieval.dataPagesBreak();
 
     },
+    //是否在线
+    ifInline:function(key){
+        switch (key) {
+            case '1':
+                return '已治理'
+                break;
+            case '2':
+                return '未治理'
+                break;
+            case '3':
+                return '治理中'
+                break;
+            default:
+                return '待确认'
+                break;
+        }
+    },
+    //获取治理情况
+    getGovernance:function(data){
+        console.log(data)
+        $.ajax({
+            type:"POST",
+            url:sysConfig.header + "/dfbinterface/mobile/gisshow/Getypecount",
+            dataType:"jsonp",
+            data:data,
+            jsonp: "callback",
+            success:function(data){
+                console.log(data,"]]]")
+                if(data.success=="0"){
+                    $(".ungovern").html(data.result.suspending)
+                    $(".hasgovern").html(data.result.solved)
+                    $(".ingovern").html(data.result.handling)
+                }
+            }
+        })
+    },
     // 获取点位数据
     GetGisDisasterdata: function (data) {
-		console.log(sysConfig.header)
         $.ajax({
             type: "GET",
             url: sysConfig.header + "/dfbinterface/mobile/gisshow/GetGisDisasterdata",//后台接口地址
@@ -108,6 +145,7 @@ var retrieval = {
             jsonp: "callback",
             success: function (data) {
                 //  显示查询出来的数据列表
+                console.log(data)
                 retrieval.showQueryDatalist(data);
                 var imgUrl = "img/led_green.png"
                 var markerOption = {
@@ -267,7 +305,7 @@ var retrieval = {
             data: data,
             jsonp: "callback",
             success: function (data) {
-                console.log(data)
+                // console.log(data)
 
             }
         });
