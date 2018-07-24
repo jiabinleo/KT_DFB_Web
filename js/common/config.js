@@ -2,8 +2,8 @@
 var sysConfig =
     {
         //请求后台服务地址服务地址
-        // header: "http://14.116.184.77:8098",
-		header: "http://192.168.1.240:8080",
+        header: "http://14.116.184.77:8098",
+		// header: "http://192.168.1.240:8080",
         img: 'http://192.168.2.13:8082/small',
         //影像地图服务
         imageMapurl: "http://202.104.132.66:9000/geoserver/gwc/service/wms",

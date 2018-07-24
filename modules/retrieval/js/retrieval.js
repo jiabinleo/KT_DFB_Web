@@ -3,8 +3,10 @@ var retrieval = {
     seletdata: [],
     poidata: [],//查询的点位信息
     init: function () {
+        retrieval.GetGisDisasterdata();
         $(".retrive-btn").click(function () {
             // retrieval.getRetrievalData();
+            retrieval.GetGisDisasterdata();
             $("#popout-retrieval").show();
             retrieval.GetGisAreaData();
             retrieval.getGovernance()
