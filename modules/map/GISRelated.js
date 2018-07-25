@@ -709,6 +709,7 @@ function delTrajectorys(uids) {
 
 // 点击标记弹出框
 function dialogPopupOnClickMark(e) {
+    console.log(e)
     var picked = gis.viewer.scene.pick(e.position);
     if (picked && picked.id) {
         var type = markType[picked.id];

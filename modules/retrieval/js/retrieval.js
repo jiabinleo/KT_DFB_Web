@@ -45,6 +45,12 @@ var retrieval = {
                 address: adress,
             };
             retrieval.GetGisDisasterdata(data);
+        });
+        //点击列表显示对应地点
+        $("#retri-data").on("click",".row",function(){
+            var lon = $(this).attr("lon")
+            var lat = $(this).attr("lat")
+            flyToDestination(lon, lat)
         })
 
     },
@@ -85,12 +91,13 @@ var retrieval = {
     showQueryDatalist: function (data) {
         var len = data.result.length,
             datas = data.result;
+            console.log(datas)
         if (len < 10) {
             $("#retrieve-page").hide();
         }
         var tableData = '';
         for (var i = 0; i < len; i++) {
-            tableData += '<div class="query-data-list data-list-tbody row" itemuuid="' + datas[i].uuid + '" >' +
+            tableData += '<div lon='+datas[i].lon+' lat='+datas[i].lat+' class="query-data-list data-list-tbody row" itemuuid="' + datas[i].uuid + '" >' +
                 '                    <div class="col-xs-3"><span>' + datas[i].id + '</span></div>' +
                 '                    <div class="col-xs-7"><span>' + datas[i].areaname + datas[i].addressname + '</span></div>' +
                 '                    <div class="col-xs-2"><span>'+retrieval.ifInline(datas[i].managestate)+'</span></div>' +
