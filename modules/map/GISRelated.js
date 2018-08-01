@@ -761,7 +761,7 @@ function fly(lon, lat, alt) {
  */
 function flyToDestination(lon, lat) {
     gis.viewer.camera.flyTo({
-        destination: Cesium.Cartesian3.fromDegrees(lon, lat, 5000),
+        destination: Cesium.Cartesian3.fromDegrees(lon, lat, 4000),
         duration: 1
     });
 }
