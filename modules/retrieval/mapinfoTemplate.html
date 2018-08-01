@@ -122,8 +122,8 @@
 
     });
     $.ajax({
-      // url:"http://192.168.1.240:8080/dfbinterface/mobile/gisshow/GetSingleDisaster",
-      url:"http://14.116.184.77:8098/dfbinterface/mobile/gisshow/GetSingleDisaster",
+      url:"http://192.168.1.240:8080/dfbinterface/mobile/gisshow/GetSingleDisaster",
+      // url:"http://14.116.184.77:8098/dfbinterface/mobile/gisshow/GetSingleDisaster",
       type: "POST",
       dataType: 'jsonp',
       jsonp: 'callback',
@@ -131,7 +131,6 @@
         uuid: uuid
       },
       success: function (data) {
-        console.log("?????",data)
         queryData(data);
         if(data.result.inspectList.length!=0){
           var result = data.result.inspectList[0].coordinate_set;
@@ -144,22 +143,19 @@
 
     function queryData(data) {
       //具体信息
+      console.log(data)
       var deviceUN = data.result.fzsite.manager?data.result.fzsite.manager:"";
       var deviceTime = data.result.fzsite.createtime?data.result.fzsite.createtime:"";
       var reportLon = data.result.fzsite.lon;
       var onlineLat = data.result.fzsite.lat;
       var vendorAddress = data.result.fzsite.addressname;
-      var infoesStatus = data.result.fzsite.nowstatus;
-      console.log("//////////")
-      console.log(deviceTime)
-      console.log("//////////")
-      
+      var infoesStatus = data.result.fzsite.managestate;
       $("#deviceUN").html(deviceUN);
       $("#deviceTime").html(common.formatDate(deviceTime));
       $("#reportLon").html(reportLon);
       $("#onlineLat").html(onlineLat);
       $("#vendorAddress").html(vendorAddress);
-      console.log(infoesStatus)
+      console.log("666",infoesStatus)
       $("#infoesStatus").html(common.status(infoesStatus));
 
       //照片and视频
@@ -216,10 +212,10 @@
       );
 
       $(document).on("click", "#videoLeft", function () {
-        console.log(videos);
+        // console.log(videos);
         if (videoIndex > 0) {
           videoIndex--;
-          console.log(videoIndex);
+          // console.log(videoIndex);
           $("#menu3").html(
             `<li class="detail-mapinfo-list">
         <video id="vid" class="pause" width="100%" src="${
@@ -234,7 +230,7 @@
       $(document).on("click", "#videoRight", function () {
         if (videoIndex < videos.length - 1) {
           videoIndex++;
-          console.log(videoIndex);
+          // console.log(videoIndex);
           $("#menu3").html(
             `<li class="detail-mapinfo-list">
         <video id="vid" class="pause" width="100%" src="${
@@ -250,7 +246,7 @@
       $(".closeX").on("click", function () {
         $("#map-popout").hide()
       })
-      console.log("00")
+      // console.log("00")
       $("#vid").on("click",function () {
         if ($(this).hasClass("pause")) {
           $(this).trigger("play");
@@ -267,7 +263,7 @@
     //时间转换
     var common = {
       formatDate: function (now) {
-        console.log(now);
+        // console.log(now);
         var now = new Date(now);
         var year = now.getFullYear();
         var month = now.getMonth() + 1;
@@ -293,16 +289,17 @@
       status: function (dd) {
         var sta = "";
         switch (dd) {
-          case "0":
+          case "1":
             sta = "已治理";
             break;
-          case "1":
+          case "2":
             sta = "未治理";
             break;
-          case "2":
+          case "3":
             sta = "治理中";
             break;
           default:
+            sta = "未治理";
             break;
         }
         return sta;
@@ -337,7 +334,7 @@
         });
         result = JSON.parse(result.replace(/'/g, '"'));
 
-        console.log(result);
+        // console.log(result);
 
         for (var i = 0; i < result.length; i++) {
           var lon = parseFloat(result[i].lon);
@@ -345,7 +342,7 @@
           var obj = [lon, lat];
           lineArr.push(obj);
         }
-        console.log(lineArr)
+        // console.log(lineArr)
 
         var polyline = new AMap.Polyline({
           map: map,

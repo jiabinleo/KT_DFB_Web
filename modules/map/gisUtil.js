@@ -229,7 +229,7 @@ var dashedLineIDMap = [];
 
             if (!isNaN(lon) && !isNaN(lat)) {
                 if (-180 <= lon && lon <= 180 && -90 <= lat && lat <= 90) {
-                    //altitudeQueryNeededList.push(Cesium.Cartographic.fromDegrees(lon, lat));
+                    altitudeQueryNeededList.push(Cesium.Cartographic.fromDegrees(lon, lat));
                     altitudeQueryNeededDataList.push(data);
                 }
             }
@@ -237,14 +237,30 @@ var dashedLineIDMap = [];
 
         // var promise = Cesium.sampleTerrain(gis.viewer.terrainProvider, gis.terrainMaxLevel, altitudeQueryNeededList);
         // Cesium.when(promise, function (updatedPositions) {
+            // debugger
             for (var i = 0; i < altitudeQueryNeededDataList.length; i++) {
                 var data = altitudeQueryNeededDataList[i];
+                var imgUrl = ""
+                switch (data.managestate) {
+                    case "1":
+                        imgUrl ="img/led_green.png"
+                        break;
+                    case "2":
+                        imgUrl ="img/led_red.png"
+                        break;
+                    case "3":
+                        imgUrl ="img/led_orange.png"
+                        break;
+                    default:
+                        imgUrl ="img/led_red.png"
+                        break;
+                }
                 var marker = layer.add({
                     id: type + "_" + util.generateUUID(),
                     position: Cesium.Cartesian3.fromDegrees(
                         altitudeQueryNeededDataList[i][opt.lonField],
                         altitudeQueryNeededDataList[i][opt.latField]),
-                    image: opt.img,
+                    image: imgUrl,
                     height: opt.imgHeight,
                     heightReference:Cesium.HeightReference.CLAMP_TO_GROUND,
                     width: opt.imgWidth
@@ -279,7 +295,6 @@ var dashedLineIDMap = [];
      */
     util.addMarker = function (option) {
         var opt = $.extend({}, util.addMarker.DEFAULT_OPTS, option);
-
         var marker = viewer.entities.add({
             id: opt.id === undefined ? "marker_" + util.generateUUID() : opt.id,
             name: opt.name,
