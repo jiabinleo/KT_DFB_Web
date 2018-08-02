@@ -132,6 +132,7 @@
       },
       success: function (data) {
         queryData(data);
+        console.log(data)
         if(data.result.inspectList.length!=0){
           var result = data.result.inspectList[0].coordinate_set;
           var position=[parseFloat(data.result.inspectList[0].lon),parseFloat(data.result.inspectList[0].lat)]

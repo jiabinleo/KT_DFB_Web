@@ -1,61 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>深圳市地面坍塌预警系统</title>
-	<link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css" />
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css" />
     <script src="http://webapi.amap.com/maps?v=1.4.6&key=您申请的key值"></script>
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="plugins/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="css/index.css" />
 </head>
+
 <body>
-<!--头部内容-->
-<div class="GIS-header">
-    <div class="header-left-logo float-l"><img src="img/logo.png" class="index-logo" />深圳市地面塌陷防治信息管理系统</div>
-    <div class="header-middle-btn float-l">
-        <div class="middle-content">
-            <input class="trapeze" role="longitute" value="125.252">
-            <input class="trapeze" role="latitude" value="5989.33">
-            <ul class="top-tool-icon">
-                <li class="" title="定位">
-                    <span class="location-icon tool-icon"></span>
-                </li>
-                <li class="-l" title="主页">
-                    <span class="home-icon tool-icon"></span>
-                </li>
-                <li class="" title="默认地图">
-                    <span class="map-icon tool-icon active"></span>
-                </li>
-                <li class="" title="影像地图">
-                    <span class="satellite-map-icon tool-icon"></span>
-                </li>
-                <li class="top_right_tool_div">
-                    <div class="tool_img tool-icon"></div>
-                    <div class="menuIc menuIc1">3212</div>
-                    <div class="menuIc menuIc2">456</div>
-                </li>
-            </ul>
+    <!--头部内容-->
+    <div class="GIS-header">
+        <div class="header-left-logo float-l">
+            <img src="img/logo.png" class="index-logo" />深圳市地面塌陷防治信息管理系统</div>
+        <div class="header-middle-btn float-l">
+            <div class="middle-content">
+                <input class="trapeze" role="longitute" value="125.252">
+                <input class="trapeze" role="latitude" value="5989.33">
+                <ul class="top-tool-icon">
+                    <li class="" title="定位">
+                        <span class="location-icon tool-icon"></span>
+                    </li>
+                    <li class="-l" title="主页">
+                        <span class="home-icon tool-icon"></span>
+                    </li>
+                    <li class="" title="默认地图">
+                        <span class="map-icon tool-icon active"></span>
+                    </li>
+                    <li class="" title="影像地图">
+                        <span class="satellite-map-icon tool-icon"></span>
+                    </li>
+                    <li class="" title="影像地图">
+                        <span class="tool_img tool-icon"></span>
+                    </li>
+                </ul>
+                <div class="top_right_tool_div">
+                    <span class="tool_img tool-icon"></span>
+                    <span class="menuIc menuIc1">2</span>
+                    <span class="menuIc menuIc2">6</span>
+                </div>
+            </div>
+        </div>
+        <div class="header-right-query float-r">
+            <input type="text" class="query-input float-l" id="adressVal" value="" placeholder="灾害点地址">
+            <input type="button" class="query-btn float-l" value="" id="addressQuerybtn">
         </div>
     </div>
-    <div class="header-right-query float-r">
-        <input type="text" class="query-input float-l" id="adressVal" value="" placeholder="灾害点地址">
-        <input type="button" class="query-btn float-l" value="" id="addressQuerybtn">
+    <div class="mess" id="mess">
+        两地距离为0
     </div>
-</div>
-<div class="mess" id="mess">
-    两地距离为0
-</div>
-<!--显示地图-->
-<div id="map_div" class="main_map"></div>
-<div id="poltcanvas" class="hide"></div>
 
-<!--检索弹出框-->
-<div id="search-popout" class="search-popout">
+    <!--显示地图-->
+    <div id="map_div" class="main_map"></div>
+    <div id="poltcanvas" class="hide"></div>
 
-</div>
-<!--地图上弹框-->
-<div id="map-popout" class="map-popout"></div>
+    <!--检索弹出框-->
+    <div id="search-popout" class="search-popout">
+
+    </div>
+    <!--地图上弹框-->
+    <div id="map-popout" class="map-popout"></div>
 
 </body>
 
