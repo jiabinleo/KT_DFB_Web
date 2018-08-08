@@ -62,6 +62,12 @@ var retrieval = {
       var lat = $(this).attr("lat");
       flyToDestination(lon, lat);
     });
+    //定位
+    $("#location_lat_lng").on("click", "span", function() {
+      var lon = $("#longitute").val();
+      var lat = $("#latitude").val();
+      flyToDestination(lon, lat);
+    });
     //框选区域
     $("#drawCircle").on("click", function() {
       drawPolygon(function() {

@@ -41,7 +41,18 @@ ol {
   padding-left: 0;
   padding-right: 0;
 }
-
+.data-list-thead .col-xs-3,
+.data-list-thead .col-xs-7,
+.data-list-thead .col-xs-2 {
+  margin-bottom: 0px;
+  padding: 8px 0;
+}
+.col-xs-3,
+.col-xs-7,
+.col-xs-2 {
+  margin-bottom: -11px;
+  padding: 6px 0;
+}
 .float-l {
   float: left;
 }
@@ -60,6 +71,7 @@ ol {
   top: 0;
   left: 0;
   z-index: 6;
+  user-select: none;
 }
 .header-left-logo {
   width: 33%;

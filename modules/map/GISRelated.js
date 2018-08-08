@@ -760,9 +760,9 @@ function fly(lon, lat, alt) {
  * @param lon 经度
  * @param lat 纬度
  */
-function flyToDestination(lon, lat) {
+function flyToDestination(lon, lat,height) {
     gis.viewer.camera.flyTo({
-        destination: Cesium.Cartesian3.fromDegrees(lon, lat, 4000),
+        destination: Cesium.Cartesian3.fromDegrees(lon, lat, height||4000),
         duration: 1
     });
 }
