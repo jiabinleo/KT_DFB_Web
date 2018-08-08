@@ -63,39 +63,40 @@ var retrieval = {
       flyToDestination(lon, lat);
     });
     //框选区域
-    $("#drawCircle").on("click",function(){
-      drawPolygon(function(){
+    $("#drawCircle").on("click", function() {
+      drawPolygon(function() {
         //将所选区域几个点传给后台
-        console.log(latLons)
-      })
-    })
+        console.log(latLons);
+      });
+    });
 
-    $("#clearDrawCircle").on("click",function(){
+    $("#clearDrawCircle").on("click", function() {
       latLons = "";
       clearDrawing();
-        
-    })
+    });
     var lonlat = [];
-    gis.mouse.registerEvent(gis.mouse.eventType.LEFT_CLICK, function(movement) {
+    gis.mouse.registerEvent(gis.mouse.eventType.RIGHT_CLICK, function(movement) {
       var lon = gis.mouse.getCurrentClickedPosition(movement).longitude;
       var lat = gis.mouse.getCurrentClickedPosition(movement).latitude;
       lonlat.push({ lon, lat });
       if (lonlat.length == 2) {
-          var jl = retrieval.getFlatternDistance(
+        var jl = retrieval
+          .getFlatternDistance(
             lonlat[0].lon,
             lonlat[0].lat,
             lonlat[1].lon,
             lonlat[1].lat
-          ).toFixed(0)
-          if(jl=="NaN"){
-              jl ="0"
-          }
-        $("#mess").html("两地相距 "+ jl +" 米")
-        $("#mess").fadeIn(10)
+          )
+          .toFixed(0);
+        if (jl == "NaN") {
+          jl = "0";
+        }
+        $("#mess").html("两地相距 " + jl + " 米");
+        $("#mess").fadeIn(10);
         // console.log(lonlat)
         setTimeout(() => {
-            $("#mess").fadeOut(1000)
-            lonlat = []
+          $("#mess").fadeOut(1000);
+          lonlat = [];
         }, 3000);
         lonlat = [];
       }
@@ -174,7 +175,8 @@ var retrieval = {
       $("#retrieve-page").hide();
     }
     var tableData = "";
-    var sty = "display:inline-block;width:180px;line-height:30px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"
+    var sty =
+      "display:inline-block;width:180px;line-height:30px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;";
     for (var i = 0; i < len; i++) {
       tableData +=
         "<div lon=" +
@@ -187,7 +189,12 @@ var retrieval = {
         '<div class="col-xs-3"><span>' +
         datas[i].id +
         "</span></div>" +
-        '<div class="col-xs-7"><span title='+datas[i].areaname + datas[i].addressname +' style='+sty+'>' +
+        '<div class="col-xs-7"><span title=' +
+        datas[i].areaname +
+        datas[i].addressname +
+        " style=" +
+        sty +
+        ">" +
         // datas[i].areaname +
         datas[i].addressname +
         "</span></div>" +
@@ -195,8 +202,8 @@ var retrieval = {
         retrieval.ifInline(datas[i].managestate) +
         "</span></div>" +
         "                </div>";
-    } 
-    
+    }
+
     $("#retri-data").html(tableData);
     retrieval.dataPagesBreak();
   },
@@ -273,9 +280,11 @@ var retrieval = {
         "</div>";
       var $ele = null,
         $ele = $(detail);
-      // $ele.appendTo("body");
+      $ele.appendTo("body");
       $("#map-popout").html($ele);
       $("#map-popout").show();
+      console.log(obj.primitive.dataObj.lat);
+      console.log(obj.primitive.dataObj.lon);
       // gis.util.addHTMLToMap($ele, obj.primitive.dataObj.lat, obj.primitive.dataObj.lon);
 
       //    调请求数据的接口
@@ -295,15 +304,16 @@ var retrieval = {
     //根据屏幕高度设置每页显示数目
     var show_per_page = 0;
     // console.log($(window).height())
-    if($(window).height()>=800){
+    if ($(window).height() >= 800) {
       show_per_page = 10;
-    }else if($(window).height()>=700&&$(window).height()<800){
+    } else if ($(window).height() >= 700 && $(window).height() < 800) {
       show_per_page = 8;
-    }else if($(window).height()>=600&&$(window).height()<700){
+    } else if ($(window).height() >= 600 && $(window).height() < 700) {
       show_per_page = 6;
-    }else if($(window).height()>=450&&$(window).height()<600){
+    } else if ($(window).height() >= 450 && $(window).height() < 600) {
       show_per_page = 3;
-    } if($(window).height()<450){
+    }
+    if ($(window).height() < 450) {
       show_per_page = 2;
     }
     //每页显示的数目
@@ -511,3 +521,21 @@ function callback(data) {
   // ;
 }
 retrieval.init();
+$.fn.extend({
+  drag: function() {
+    this.on("mousedown", function(e) {
+      $(this).css("position", "absolute");
+      var disX = e.clientX - $(this).position().left,
+        disY = e.clientY - $(this).position().top,
+        $self = $(this);
+      $(document).on("mousemove", function(e) {
+        $self.css("left", e.clientX - disX);
+        $self.css("top", e.clientY - disY);
+      });
+      $(document).on("mouseup", function() {
+        $(document).off();
+      });
+    });
+  }
+});
+$(".popout-content").drag();

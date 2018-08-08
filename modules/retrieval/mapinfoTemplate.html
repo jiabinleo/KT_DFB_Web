@@ -4,50 +4,6 @@
     <div class="modals-header-tit">545621</div>
     <a class="closeX"></a>
   </div>
-  <!-- <div class="modals-body">
-        <div class="mapinfo-tabs">
-            <i class="float-l tabsicon tabsiconl"></i>
-            <div class="tabs-content float-l">
-                <ul>
-                    <li class="tabs-content-list active">具体信息</li>
-                    <li class="tabs-content-list">照片</li>
-                    <li class="tabs-content-list">视频</li>
-                    <li class="tabs-content-list">台账</li>
-                    <li class="tabs-content-list">其他信息</li>
-                    <li class="tabs-content-list">其他信息</li>
-                </ul>
-
-            </div>
-            <i class="float-r tabsicon tabsiconr"></i>
-        </div>
-        <div class="mapinfo-main">
-            <ul id="detail-mapinfo" class="detail-mapinfo">
-                <li class="detail-mapinfo-list">
-                    <span class="title">设备ID：</span>
-                    <span class="device-ID">2545454</span>
-                </li>
-                <li class="detail-mapinfo-list">
-                    <span class="title">设备地址：</span>
-                    <span class="device-address">风速风多少个个</span>
-                </li>
-                <li class="detail-mapinfo-list">
-                    <span class="title">上报时间：</span>
-                    <span class="report-time">2014-04-11 12:55:55</span>
-                </li>
-                <li class="detail-mapinfo-list">
-                    <span class="title">在线状态：</span>
-                    <span class="online-status">在线</span>
-                </li>
-                <li class="detail-mapinfo-list">
-                    <span class="title">厂商服务器：</span>
-                    <span class="vendor-server">大多数的防晒霜的</span>
-                </li>
-                <li class="detail-mapinfo-list">
-                    <span class="title">信息内容：</span>
-                    <div  class="infoes-content">时候还好或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或灌灌灌灌灌过过过过过过过</div>
-                </li>
-            </ul>
-        </div>-->
   <div class="modals-body">
     <div class="mapinfo-tabs">
       <i class="float-l tabsicon tabsiconl"></i>
@@ -95,7 +51,7 @@
       <ul id="menu3" class="menu3 detail-mapinfo">
 
       </ul>
-      <ul id="" class="detail-mapinfo">
+      <ul id="menu4" class="detail-mapinfo">
         <div id="container"></div>
         <div class="button-group">
           <input type="button" class="button" value="开始动画" id="start" />
@@ -121,7 +77,7 @@
 
     });
     $.ajax({
-      url:sysConfig.header+"/dfbinterface/mobile/gisshow/GetSingleDisaster",
+      url: sysConfig.header + "/dfbinterface/mobile/gisshow/GetSingleDisaster",
       type: "POST",
       dataType: 'jsonp',
       jsonp: 'callback',
@@ -130,11 +86,12 @@
       },
       success: function (data) {
         queryData(data);
-        // console.log(data)
-        if(data.result.inspectList.length!=0){
+        if (data.result.inspectList.length != 0) {
           var result = data.result.inspectList[0].coordinate_set;
-          var position=[parseFloat(data.result.inspectList[0].lon),parseFloat(data.result.inspectList[0].lat)]
-          map.init(result,position);
+          var position = [parseFloat(data.result.inspectList[0].lon), parseFloat(data.result.inspectList[0].lat)]
+          map.init(result, position);
+        }else{
+          $("#menu4").html("暂无地图")
         }
       },
       error: function (err) { }
@@ -143,8 +100,8 @@
     function queryData(data) {
       //具体信息
       // console.log(data)
-      var deviceUN = data.result.fzsite.manager?data.result.fzsite.manager:"";
-      var deviceTime = data.result.fzsite.createtime?data.result.fzsite.createtime:"";
+      var deviceUN = data.result.fzsite.manager ? data.result.fzsite.manager : "";
+      var deviceTime = data.result.fzsite.createtime ? data.result.fzsite.createtime : "";
       var reportLon = data.result.fzsite.lon;
       var onlineLat = data.result.fzsite.lat;
       var vendorAddress = data.result.fzsite.addressname;
@@ -154,7 +111,6 @@
       $("#reportLon").html(reportLon);
       $("#onlineLat").html(onlineLat);
       $("#vendorAddress").html(vendorAddress);
-      // console.log("666",infoesStatus)
       $("#infoesStatus").html(common.status(infoesStatus));
 
       //照片and视频
@@ -169,13 +125,18 @@
           videos.push(data.result.attachList[i].url_path);
         }
       }
-      $("#menu2").html(
-        `<li class="detail-mapinfo-list">
-        <img style="width:100%;height:100%" src="${imgs[imgIndex]}" alt="暂无图片">
+      if (imgs[imgIndex] == undefined) {
+        $("#menu2").html("暂无图片")
+      } else {
+        $("#menu2").html(
+          `<li class="detail-mapinfo-list">
+        <img style="width:100%;height:100%" src="${imgs[imgIndex]}" alt="000">
         <span id="imgLeft" class="arr arrLeft"><</span>
         <span id="imgRight" class="arr arrRight">></span>
       </li>`
-      );
+        );
+      }
+
       //
       $(document).on("click", "#imgLeft", function () {
         if (imgIndex > 0) {
@@ -201,20 +162,22 @@
           );
         }
       });
-
-      $("#menu3").html(
-        `<li class="detail-mapinfo-list">
+      if (videos[videoIndex] == undefined) {
+        $("#menu3").html("暂无视频")
+      } else {
+        $("#menu3").html(
+          `<li class="detail-mapinfo-list">
         <video id="vid" pause width="100%" src="${videos[videoIndex]}" class="pause">暂无视频</video>
         <span id="videoLeft" class="arr arrLeft"><</span>
         <span id="videoRight" class="arr arrRight">></span>
     </li>`
-      );
+        );
+      }
+
 
       $(document).on("click", "#videoLeft", function () {
-        // console.log(videos);
         if (videoIndex > 0) {
           videoIndex--;
-          // console.log(videoIndex);
           $("#menu3").html(
             `<li class="detail-mapinfo-list">
         <video id="vid" class="pause" width="100%" src="${
@@ -246,7 +209,7 @@
         $("#map-popout").hide()
       })
       // console.log("00")
-      $("#vid").on("click",function () {
+      $("#vid").on("click", function () {
         if ($(this).hasClass("pause")) {
           $(this).trigger("play");
           $(this).removeClass("pause");
