@@ -247,6 +247,9 @@ body {
   font-size: 20px;
 }
 /* 工具栏 */
-.tool_img {
-  background: url(../modules/map/drawler/img/tool.png) 0px 0px no-repeat;
+.drawPolygonChecked {
+  background: url(../modules/map/drawler/img/drawPolygonChecked.png) 0px 0px no-repeat;
+}
+.clear2_img {
+  background: url(../modules/map/drawler/img/clear2.png) 0px 0px no-repeat;
 }

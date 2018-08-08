@@ -247,7 +247,7 @@
             try {
                 log = hex ? hex : 'transparent';
                 if( opacity ) log += ', ' + opacity;
-                console.log(log);
+                // console.log(log);
             } catch(e) {}
         },
         theme: 'default'

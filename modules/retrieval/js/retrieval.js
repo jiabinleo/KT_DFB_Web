@@ -62,6 +62,19 @@ var retrieval = {
       var lat = $(this).attr("lat");
       flyToDestination(lon, lat);
     });
+    //框选区域
+    $("#drawCircle").on("click",function(){
+      drawPolygon(function(){
+        //将所选区域几个点传给后台
+        console.log(latLons)
+      })
+    })
+
+    $("#clearDrawCircle").on("click",function(){
+      latLons = "";
+      clearDrawing();
+        
+    })
     var lonlat = [];
     gis.mouse.registerEvent(gis.mouse.eventType.LEFT_CLICK, function(movement) {
       var lon = gis.mouse.getCurrentClickedPosition(movement).longitude;
@@ -79,7 +92,7 @@ var retrieval = {
           }
         $("#mess").html("两地相距 "+ jl +" 米")
         $("#mess").fadeIn(10)
-        console.log(lonlat)
+        // console.log(lonlat)
         setTimeout(() => {
             $("#mess").fadeOut(1000)
             lonlat = []
@@ -161,6 +174,7 @@ var retrieval = {
       $("#retrieve-page").hide();
     }
     var tableData = "";
+    var sty = "display:inline-block;width:180px;line-height:30px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"
     for (var i = 0; i < len; i++) {
       tableData +=
         "<div lon=" +
@@ -170,18 +184,19 @@ var retrieval = {
         ' class="query-data-list data-list-tbody row" itemuuid="' +
         datas[i].uuid +
         '" >' +
-        '                    <div class="col-xs-3"><span>' +
+        '<div class="col-xs-3"><span>' +
         datas[i].id +
         "</span></div>" +
-        '                    <div class="col-xs-7"><span>' +
-        datas[i].areaname +
+        '<div class="col-xs-7"><span title='+datas[i].areaname + datas[i].addressname +' style='+sty+'>' +
+        // datas[i].areaname +
         datas[i].addressname +
         "</span></div>" +
         '                    <div class="col-xs-2"><span>' +
         retrieval.ifInline(datas[i].managestate) +
         "</span></div>" +
         "                </div>";
-    }
+    } 
+    
     $("#retri-data").html(tableData);
     retrieval.dataPagesBreak();
   },
@@ -248,9 +263,8 @@ var retrieval = {
   //点击地图上的图标弹出弹框
   pointOnClick: function(e, obj) {
     if (retrieval.mapinfoHtml != null) {
-      console.log("点击地图图标出弹框");
+      // console.log("点击地图图标出弹框");
       sessionStorage.setItem("uuid", obj.primitive.dataObj.uuid);
-
       var detail =
         "<div id='" +
         obj.id +
@@ -276,10 +290,24 @@ var retrieval = {
       });
     }
   },
-  //    分页初始化
+  //分页初始化
   dataPagesBreak: function() {
+    //根据屏幕高度设置每页显示数目
+    var show_per_page = 0;
+    // console.log($(window).height())
+    if($(window).height()>=800){
+      show_per_page = 10;
+    }else if($(window).height()>=700&&$(window).height()<800){
+      show_per_page = 8;
+    }else if($(window).height()>=600&&$(window).height()<700){
+      show_per_page = 6;
+    }else if($(window).height()>=450&&$(window).height()<600){
+      show_per_page = 3;
+    } if($(window).height()<450){
+      show_per_page = 2;
+    }
     //每页显示的数目
-    var show_per_page = 10;
+    // var show_per_page = 10;
     //获取话题数据的数量
     var number_of_items = $("#retri-data")
       .children()

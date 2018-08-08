@@ -1820,7 +1820,7 @@ var dashedLineIDMap = [];
      */
     util.addCircleShape2 = function(option) {
         var opt = $.extend({}, util.addCircleShape2.DEFAULT_OPTS, option);
-        console.log(opt.ids);
+        // console.log(opt.ids);
         var uid = new Date().getTime() + Math.random();
         var circleGrahpic = gis.viewer.entities.add({
             id: uid,

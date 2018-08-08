@@ -468,7 +468,7 @@ function overviewguid() {
         overview.removemsgdatabyid(id);
     });
     overview.classchanage = function (index, oldclass) {
-        console.log(this);
+        // console.log(this);
 
     }
 

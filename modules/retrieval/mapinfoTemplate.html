@@ -109,7 +109,6 @@
 
     </div>
   </div>
-
 </div>
 <div class="box-width-equal"></div>
 </div>
@@ -122,8 +121,7 @@
 
     });
     $.ajax({
-      url:"http://192.168.1.240:8080/dfbinterface/mobile/gisshow/GetSingleDisaster",
-      // url:"http://14.116.184.77:8098/dfbinterface/mobile/gisshow/GetSingleDisaster",
+      url:sysConfig.header+"/dfbinterface/mobile/gisshow/GetSingleDisaster",
       type: "POST",
       dataType: 'jsonp',
       jsonp: 'callback',
@@ -132,7 +130,7 @@
       },
       success: function (data) {
         queryData(data);
-        console.log(data)
+        // console.log(data)
         if(data.result.inspectList.length!=0){
           var result = data.result.inspectList[0].coordinate_set;
           var position=[parseFloat(data.result.inspectList[0].lon),parseFloat(data.result.inspectList[0].lat)]
@@ -144,7 +142,7 @@
 
     function queryData(data) {
       //具体信息
-      console.log(data)
+      // console.log(data)
       var deviceUN = data.result.fzsite.manager?data.result.fzsite.manager:"";
       var deviceTime = data.result.fzsite.createtime?data.result.fzsite.createtime:"";
       var reportLon = data.result.fzsite.lon;
@@ -156,7 +154,7 @@
       $("#reportLon").html(reportLon);
       $("#onlineLat").html(onlineLat);
       $("#vendorAddress").html(vendorAddress);
-      console.log("666",infoesStatus)
+      // console.log("666",infoesStatus)
       $("#infoesStatus").html(common.status(infoesStatus));
 
       //照片and视频
