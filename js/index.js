@@ -34,7 +34,7 @@ $(function() {
     });
 
   //新增功能
-  //l——>header 隐藏显示
+  //l// header隐藏显示
   setTimeout(() => {
     headerDisplayConcealment(80);
   }, 5000);
@@ -53,5 +53,5 @@ $(function() {
         : $(".middle-content").hide();
     }, 500);
   };
-  //<l——
+  //l//
 });
