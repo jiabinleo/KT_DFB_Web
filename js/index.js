@@ -34,21 +34,25 @@ $(function() {
     });
 
   //新增功能
-  //——>header 隐藏显示
+  //l——>header 隐藏显示
   setTimeout(() => {
-    $(".GIS-header").animate({ width: 80 }, 1000);
-    $(".middle-content").hide();
+    headerDisplayConcealment(80);
   }, 3000);
   $(".header-left-logo").on("click", function() {
-    $(".GIS-header").stop();
     if ($(".GIS-header").width() <= 100) {
-      $(".GIS-header").animate({ width: "100%" }, 1000);
-      $(".middle-content").show();
+        headerDisplayConcealment("100%");
     } else {
-      $(".GIS-header").animate({ width: 80 }, 1000);
-      $(".middle-content").hide();
+        headerDisplayConcealment(80);
     }
   });
-  //<——
-  
+  function headerDisplayConcealment(width) {
+    $(".GIS-header").stop();
+    $(".GIS-header").animate({ width: width }, 1000);
+    if (width > 100) {
+      $(".middle-content").show();
+    } else {
+      $(".middle-content").hide();
+    }
+  }
+  //<l——
 });
