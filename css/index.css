@@ -72,6 +72,7 @@ ol {
   left: 0;
   z-index: 6;
   user-select: none;
+  overflow: hidden;
 }
 .header-left-logo {
   width: 33%;

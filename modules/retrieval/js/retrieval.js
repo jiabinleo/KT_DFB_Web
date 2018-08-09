@@ -147,7 +147,7 @@ var retrieval = {
         var selectconten = "<option value='全部'>全部</option>";
         for (var i = 0; i < result.length; i++) {
           selectconten +=
-            "<option value='" +
+            "1<option value='" +
             result[i].id +
             "'>" +
             result[i].name +
