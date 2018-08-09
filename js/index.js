@@ -37,24 +37,21 @@ $(function() {
   //l——>header 隐藏显示
   setTimeout(() => {
     headerDisplayConcealment(80);
-  }, 3000);
+  }, 5000);
   $(".header-left-logo").on("click", function() {
-    if ($(".GIS-header").width() <= 100) {
-      headerDisplayConcealment("100%");
-    } else {
-      headerDisplayConcealment(80);
-    }
+    $(".GIS-header").width() <= 100
+      ? headerDisplayConcealment("100%")
+      : headerDisplayConcealment(80);
   });
-  function headerDisplayConcealment(width) {
-    $(".GIS-header").stop();
-    $(".GIS-header").animate({ width: width }, 1000);
+  headerDisplayConcealment = width => {
+    $(".GIS-header")
+      .stop()
+      .animate({ width: width }, 1000);
     setTimeout(() => {
-      if (parseInt(width) > 80) {
-        $(".middle-content").show();
-      } else {
-        $(".middle-content").hide();
-      }
+      parseInt(width) > 80
+        ? $(".middle-content").show()
+        : $(".middle-content").hide();
     }, 500);
-  }
+  };
   //<l——
 });
