@@ -40,19 +40,21 @@ $(function() {
   }, 3000);
   $(".header-left-logo").on("click", function() {
     if ($(".GIS-header").width() <= 100) {
-        headerDisplayConcealment("100%");
+      headerDisplayConcealment("100%");
     } else {
-        headerDisplayConcealment(80);
+      headerDisplayConcealment(80);
     }
   });
   function headerDisplayConcealment(width) {
     $(".GIS-header").stop();
     $(".GIS-header").animate({ width: width }, 1000);
-    if (width > 100) {
-      $(".middle-content").show();
-    } else {
-      $(".middle-content").hide();
-    }
+    setTimeout(() => {
+      if (parseInt(width) > 80) {
+        $(".middle-content").show();
+      } else {
+        $(".middle-content").hide();
+      }
+    }, 500);
   }
   //<l——
 });
