@@ -265,8 +265,8 @@ var retrieval = {
           img: imgUrl,
           data: data.result,
           type: "basedata",
-          imgWidth: 30, //图片宽度
-          imgHeight: 40, //图片高度
+          imgWidth: 24, //图片宽度
+          imgHeight: 32, //图片高度
           onClick: retrieval.pointOnClick
         };
         gis.util.addMakerBatch(markerOption);
@@ -322,7 +322,7 @@ var retrieval = {
     if ($(window).height() < 450) {
       show_per_page = 2;
     }
-    //每页显示的数目//
+    //每页显示的数目
     // var show_per_page = 10;
     //获取话题数据的数量
     var number_of_items = $("#retri-data")
