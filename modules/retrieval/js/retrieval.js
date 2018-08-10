@@ -322,7 +322,7 @@ var retrieval = {
     if ($(window).height() < 450) {
       show_per_page = 2;
     }
-    //每页显示的数目
+    //每页显示的数目//
     // var show_per_page = 10;
     //获取话题数据的数量
     var number_of_items = $("#retri-data")
