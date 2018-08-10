@@ -265,8 +265,8 @@ var retrieval = {
           img: imgUrl,
           data: data.result,
           type: "basedata",
-          imgWidth: 24, //图片宽度
-          imgHeight: 32, //图片高度
+          imgWidth: 40, //图片宽度
+          imgHeight: 40, //图片高度
           onClick: retrieval.pointOnClick
         };
         gis.util.addMakerBatch(markerOption);
