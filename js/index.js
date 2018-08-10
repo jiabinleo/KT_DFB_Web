@@ -33,8 +33,8 @@ $(function() {
         .removeClass("active");
     });
 
-  //新增功能
-  //l// header隐藏显示
+  //  新增功能
+  //  header隐藏显示
   setTimeout(() => {
     headerDisplayConcealment(80);
   }, 5000);
@@ -53,5 +53,4 @@ $(function() {
         : $(".middle-content").hide();
     }, 500);
   };
-  //l//
 });
