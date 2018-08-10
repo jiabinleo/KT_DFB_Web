@@ -243,16 +243,16 @@ var dashedLineIDMap = [];
                 var imgUrl = ""
                 switch (data.managestate) {
                     case "1":
-                        imgUrl ="img/led_green.png"
+                        imgUrl ="img/led_green.svg"
                         break;
                     case "2":
-                        imgUrl ="img/led_red.png"
+                        imgUrl ="img/led_red.svg"
                         break;
                     case "3":
-                        imgUrl ="img/led_orange.png"
+                        imgUrl ="img/led_orange.svg"
                         break;
                     default:
-                        imgUrl ="img/led_red.png"
+                        imgUrl ="img/led_red.svg"
                         break;
                 }
                 var marker = layer.add({
