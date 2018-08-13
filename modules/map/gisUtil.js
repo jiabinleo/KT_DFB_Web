@@ -493,6 +493,7 @@ var dashedLineIDMap = [];
      * @param ids
      */
     util.deleteEntityByIdBatch = function (ids) {
+        debugger
         for(var i = 0; i < ids.length ; i++){
             var entity = viewer.entities.getById(ids[i]);
             viewer.entities.remove(entity);

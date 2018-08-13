@@ -53,4 +53,11 @@ $(function() {
         : $(".middle-content").hide();
     }, 500);
   };
+  //根据id增加区域范围
+  var cc = ["basedata_JXIROdAGw6nEecRnI6A8EnDhgp1pTbaF"];
+  addCircleShape(cc, 113.971398, 22.565625, 10000, "rgba(1,1,0,0.3)");
+  //根据id清除区域范围
+  setTimeout(() => {
+    delCircleShape(cc);
+  }, 5000);
 });

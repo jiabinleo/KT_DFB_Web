@@ -86,8 +86,7 @@ var retrieval = {
       var lat = gis.mouse.getCurrentClickedPosition(movement).latitude;
       lonlat.push({ lon, lat });
       if (lonlat.length == 2) {
-        var jl = retrieval
-          .getFlatternDistance(
+        var jl = gis.util.distance(
             lonlat[0].lon,
             lonlat[0].lat,
             lonlat[1].lon,
@@ -108,34 +107,34 @@ var retrieval = {
       }
     });
   },
-  getFlatternDistance: function(lat1, lng1, lat2, lng2) {
-    var f = (((lat1 + lat2) / 2) * Math.PI) / 180.0;
-    var g = (((lat1 - lat2) / 2) * Math.PI) / 180.0;
-    var l = (((lng1 - lng2) / 2) * Math.PI) / 180.0;
+  // getFlatternDistance: function(lat1, lng1, lat2, lng2) {
+  //   var f = (((lat1 + lat2) / 2) * Math.PI) / 180.0;
+  //   var g = (((lat1 - lat2) / 2) * Math.PI) / 180.0;
+  //   var l = (((lng1 - lng2) / 2) * Math.PI) / 180.0;
 
-    var sg = Math.sin(g);
-    var sl = Math.sin(l);
-    var sf = Math.sin(f);
+  //   var sg = Math.sin(g);
+  //   var sl = Math.sin(l);
+  //   var sf = Math.sin(f);
 
-    var s, c, w, r, d, h1, h2;
-    var a = 6378137.0;
-    var fl = 1 / 298.257;
+  //   var s, c, w, r, d, h1, h2;
+  //   var a = 6378137.0;
+  //   var fl = 1 / 298.257;
 
-    sg = sg * sg;
-    sl = sl * sl;
-    sf = sf * sf;
+  //   sg = sg * sg;
+  //   sl = sl * sl;
+  //   sf = sf * sf;
 
-    s = sg * (1 - sl) + (1 - sf) * sl;
-    c = (1 - sg) * (1 - sl) + sf * sl;
+  //   s = sg * (1 - sl) + (1 - sf) * sl;
+  //   c = (1 - sg) * (1 - sl) + sf * sl;
 
-    w = Math.atan(Math.sqrt(s / c));
-    r = Math.sqrt(s * c) / w;
-    d = 2 * w * a;
-    h1 = (3 * r - 1) / 2 / c;
-    h2 = (3 * r + 1) / 2 / s;
+  //   w = Math.atan(Math.sqrt(s / c));
+  //   r = Math.sqrt(s * c) / w;
+  //   d = 2 * w * a;
+  //   h1 = (3 * r - 1) / 2 / c;
+  //   h2 = (3 * r + 1) / 2 / s;
 
-    return d * (1 + fl * (h1 * sf * (1 - sg) - h2 * (1 - sf) * sg));
-  },
+  //   return d * (1 + fl * (h1 * sf * (1 - sg) - h2 * (1 - sf) * sg));
+  // },
   GetGisAreaData: function() {
     $.ajax({
       type: "GET",
@@ -275,6 +274,7 @@ var retrieval = {
   },
   //点击地图上的图标弹出弹框
   pointOnClick: function(e, obj) {
+    console.log(obj)
     if (retrieval.mapinfoHtml != null) {
       // console.log("点击地图图标出弹框");
       sessionStorage.setItem("uuid", obj.primitive.dataObj.uuid);
